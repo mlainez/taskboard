@@ -53,5 +53,5 @@ namespace :deploy do
     task t, :roles => :app do ; end
   end
 
-  after "deploy:update", "deploy:remove_pictures", "symlink_members_pictures", "symlink_options", "symlink_db", "deploy:rake_db_migrate", "deploy:rake_db_seed"
+  after "deploy:update", "deploy:remove_pictures", "deploy:symlink_members_pictures", "deploy:symlink_options", "deploy:symlink_db", "deploy:rake_db_migrate", "deploy:rake_db_seed"
 end
