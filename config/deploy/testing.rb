@@ -21,11 +21,6 @@ namespace :deploy do
    run "touch #{current_path}/tmp/restart.txt"
   end
 
-  desc "Removng pictures"
-  task :remove_pictures do
-    run "cd #{current_path}/ && rm -rf public/system/*"
-  end
-
   desc "Migrating database (reset)"
   task :rake_db_migrate do
     run "cd #{current_path}/ && rake RAILS_ENV=\"testing\" db:migrate:reset --trace"
@@ -41,5 +36,5 @@ namespace :deploy do
     task t, :roles => :app do ; end
   end
 
-  after "deploy:update", "deploy:remove_pictures", "deploy:rake_db_migrate", "deploy:rake_db_seed"
+  after "deploy:update", "deploy:rake_db_migrate", "deploy:rake_db_seed"
 end
