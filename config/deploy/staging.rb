@@ -28,8 +28,26 @@ namespace :deploy do
     run "cd #{current_path}/ && rake RAILS_ENV=\"staging\" db:migrate --trace"
   end
 
+  desc "Removng pictures"
+  task :remove_pictures do
+    run "cd #{current_path}/ && rm -rf public/system/*"
+  end
+
+  task :symlink_members_pictures do
+    run "ln -s #{deploy_to}/shared/system/ #{deploy_to}/current/public/system"
+  end
+
+  task :symlink_options do
+    run "ln -s #{deploy_to}/shared/options.yml #{deploy_to}/current/config/options.yml"
+  end
+
+  task :symlink_db do
+    run "ln -s #{deploy_to}/shared/database.yml #{deploy_to}/current/config/database.yml"
+  end
+
+  desc "Seeding Database"
   task :rake_db_seed do
-    run "cd #{current_path}/ && rake RAILS_ENV=\"staging\" db:seed --trace"
+    run "cd #{current_path}/ && rake RAILS_ENV=\"testing\" db:seed --trace"
   end
 
   [:start, :stop].each do |t|
@@ -37,5 +55,5 @@ namespace :deploy do
     task t, :roles => :app do ; end
   end
 
-  after "deploy:update", "deploy:rake_db_migrate", "deploy:rake_db_seed"
+  after "deploy:update", "deploy:remove_pictures", "deploy:symlink_members_pictures", "deploy:symlink_options", "deploy:symlink_db", "deploy:rake_db_migrate", "deploy:rake_db_seed"
 end
