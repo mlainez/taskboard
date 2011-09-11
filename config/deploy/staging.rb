@@ -47,7 +47,7 @@ namespace :deploy do
 
   desc "Seeding Database"
   task :rake_db_seed do
-    run "cd #{current_path}/ && rake RAILS_ENV=\"testing\" db:seed --trace"
+    run "cd #{current_path}/ && rake RAILS_ENV=\"staging\" db:seed --trace"
   end
 
   [:start, :stop].each do |t|
