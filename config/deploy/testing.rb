@@ -35,6 +35,14 @@ namespace :deploy do
     run "ln -s #{deploy_to}/shared/system/ #{deploy_to}/current/public/system"
   end
 
+  task :symlink_options do
+    run "ln -s #{deploy_to}/shared/options.yml #{deploy_to}/current/config/options.yml"
+  end
+
+  task :symlink_db do
+    run "ln -s #{deploy_to}/shared/database.yml #{deploy_to}/current/config/database.yml"
+  end
+
   desc "Seeding Database"
   task :rake_db_seed do
     run "cd #{current_path}/ && rake RAILS_ENV=\"testing\" db:seed --trace"
