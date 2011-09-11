@@ -52,15 +52,10 @@ namespace :deploy do
     run "ln -s #{deploy_to}/shared/database.yml #{deploy_to}/current/config/database.yml"
   end
 
-  desc "Seeding Database"
-  task :rake_db_seed do
-    run "cd #{current_path}/ && rake RAILS_ENV=\"production\" db:seed --trace"
-  end
-
   [:start, :stop].each do |t|
     desc "#{t} task is a no-op with mod_rails"
     task t, :roles => :app do ; end
   end
 
-  after "deploy:update", "deploy:remove_pictures", "deploy:symlink_members_pictures", "deploy:symlink_options", "deploy:symlink_db", "deploy:rake_db_migrate", "deploy:rake_db_seed"
+  after "deploy:update", "deploy:remove_pictures", "deploy:symlink_members_pictures", "deploy:symlink_options", "deploy:symlink_db", "deploy:rake_db_migrate"
 end
