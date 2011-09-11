@@ -10,7 +10,7 @@ RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-TASKBOARD_VERSION = '0.2' unless defined? TASKBOARD_VERSION
+TASKBOARD_VERSION = '0.3.1' unless defined? TASKBOARD_VERSION
 FULL_VERSION = "v#{TASKBOARD_VERSION}" unless defined? FULL_VERSION
 
 Rails::Initializer.run do |config|
