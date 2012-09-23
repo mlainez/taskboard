@@ -7,6 +7,7 @@ gem "authlogic"
 gem "paperclip"
 gem "mysql"
 gem "ruby-prof"
+gem "capistrano"
 
 # erubis required by rails_xss
 gem "erubis"
