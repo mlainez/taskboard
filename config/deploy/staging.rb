@@ -10,8 +10,8 @@ namespace :deploy do
   set :deploy_to, "/var/www/rails/#{application}/staging"
 
   set :scm, :git
-  set :repository,  "git@github.com:mlainez/#{application}.git"
-  set :branch, "develop"
+  set :repository,  "git@github.com:agilar/#{application}.git"
+  set :branch, "master"
   set :use_sudo, false
 
   server "dev.agilar.org", :app, :web, :db, :primary => true
